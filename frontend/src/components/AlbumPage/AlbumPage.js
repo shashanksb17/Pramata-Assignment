@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import './AlbumPage.css'; 
+import { Carousel } from 'react-responsive-carousel';
+
 
 function AlbumPage() {
   const { albumId } = useParams();
-  const [photos, setPhotos] = useState([]); // Initialize as an empty array
+  const [photos, setPhotos] = useState([]);
   const [title, setTitle] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
@@ -43,27 +46,34 @@ function AlbumPage() {
   };
 
   return (
-    <div>
+    <div className="album-page-container">
       <h2>Add Image to Album</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageUrl}
-        onChange={e => setImageUrl(e.target.value)}
-      />
-      <button onClick={handleAddImage}>Add Image</button>
+      <div className="add-image-form">
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={imageUrl}
+          onChange={e => setImageUrl(e.target.value)}
+        />
+        <button onClick={handleAddImage}>Add Image</button>
+      </div>
 
-      <div>
+      <div className="image-grid">
         {photos.map(photo => (
-          <img key={photo._id} src={photo.imageUrl} alt={photo.title} />
+          <div key={photo._id} className="image-card">
+            <Link to={`/comments/${photo._id}`}>
+              <img src={photo.imageUrl} alt={photo.title} />
+            </Link>
+          </div>
         ))}
       </div>
+
     </div>
   );
 }

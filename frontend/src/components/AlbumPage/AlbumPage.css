@@ -1,0 +1,71 @@
+.album-page-container {
+    padding: 20px;
+  }
+  
+  .add-image-form {
+    margin-bottom: 20px;
+  }
+  
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .image-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .image-card img {
+    max-width: 100%;
+  }
+  /* AlbumPage.css */
+
+.album-page-container {
+    padding: 20px;
+  }
+  
+  .add-image-form {
+    margin-bottom: 20px;
+  }
+  
+  .add-image-form input,
+  .add-image-form button {
+    margin-right: 10px;
+  }
+  
+  .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  
+  .image-card {
+    flex: 1 1 1 calc(33.33% - 10px); /* Distribute images horizontally with equal spacing */
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .image-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Adjust the maximum height as needed */
+  }
+  
+  .slideshow-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+  }
+  
+  
+  /* Add your Slideshow styling here */
+  
+  
