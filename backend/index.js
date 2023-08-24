@@ -10,7 +10,7 @@ const apiRoutes = require('./routes/api.route');
 const userRoutes=require("./routes/user.route")
 const {connection}=require("./config/db")
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use('/album', apiRoutes);
 app.use('/user', userRoutes);

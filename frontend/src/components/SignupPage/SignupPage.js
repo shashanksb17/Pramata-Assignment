@@ -27,16 +27,13 @@ function Signup() {
       });
       console.log(response)
 
-      if (response.success) {
+      if (response.message=="User registered successfully") {
         const data = await response.json();
         MySwal.fire(
           'User Registered Successfully',
           'Please click the button!',
           'success'
-        ).then(() => {
-          // Redirect to login page after successful registration
-          navigate('/login', { replace: true });
-        });
+        )
       } else {
         const errorData = await response.json();
         MySwal.fire({
