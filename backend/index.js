@@ -12,8 +12,8 @@ const {connection}=require("./config/db")
 
 app.use(cors())
 app.use(express.json());
-app.use('/', apiRoutes);
-app.use('/', userRoutes);
+app.use('/album', apiRoutes);
+app.use('/user', userRoutes);
 
 
 app.get("/",(req,res)=>{
