@@ -35,13 +35,21 @@ router.get('/albums', async (req, res) => {
 
 // Create a new photo
 router.post('/photos', async (req, res) => {
-  try {
-    const photo = await Photo.create(req.body);
-    res.status(201).json(photo);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+    try {
+      const { title, imageUrl, albumId } = req.body; // Destructure data from req.body
+  
+      // Create a new photo using the data
+      const newPhoto = await Photo.create({
+        title: title,
+        imageUrl: imageUrl,
+        albumId: albumId,
+      });
+  
+      res.status(201).json(newPhoto); // Return the newly created photo
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });
 
 // Get all photos in an album
 router.get('/albums/:albumId/photos', async (req, res) => {

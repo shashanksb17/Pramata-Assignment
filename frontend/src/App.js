@@ -5,6 +5,7 @@ import HomePage from './components/HomePage/HomePage';
 import AddAlbumPage from './components/AddAlbumPage/AddAlbumPage';
 import LoginPage from './components/LoginPage/LoginPage'; 
 import SignupPage from './components/SignupPage/SignupPage'; 
+import AlbumPage from './components/AlbumPage/AlbumPage'; 
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/add-album" element={<AddAlbumPage />} />
           <Route path="/login" element={<LoginPage />} /> 
           <Route path="/signup" element={<SignupPage />} /> 
+          <Route path="/album/:albumId" element={<AlbumPage/>} />
           {/* Define other routes */}
         </Routes>
       </div>

@@ -1,21 +1,36 @@
-// HomePage.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './HomePage.css'; // Import your CSS file
 
 function HomePage() {
-  // Fetch and map albums to generate album tiles
-  // Each album tile should link to the respective album page
+  const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    // Make a GET request to the API to fetch albums
+    fetch('https://album-app.onrender.com/album/albums')
+      .then(response => response.json())
+      .then(data => setAlbums(data))
+      .catch(error => console.error('Error fetching albums:', error));
+  }, []);
+
   return (
     <div>
       <h1>Albums</h1>
-      {/* Map through albums */}
-      <div>
-        <Link to="/album/albumId1">
-          <img src="albumCover1.jpg" alt="Album 1" />
-          <h2>Album Title 1</h2>
-        </Link>
+      <div className="album-grid">
+        {albums.map(album => (
+          <div key={album._id} className="album-card">
+            <Link to={`/album/${album._id}`} className="card-link">
+              <div className="card-content">
+                <div
+                  className="card-image"
+                  style={{ backgroundImage: `url(${album.coverImage})` }}
+                />
+                <h2 className="card-title">{album.title}</h2>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
-      {/* Repeat for other albums */}
     </div>
   );
 }
