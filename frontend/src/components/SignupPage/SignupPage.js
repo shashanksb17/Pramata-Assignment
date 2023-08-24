@@ -1,15 +1,13 @@
-// Signup.js
 import React, { useState } from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import './Signup.css';
-import withReactContent from 'sweetalert2-react-content'
 
-const MySwal = withReactContent(Swal)
+const MySwal = withReactContent(Swal);
 
 function Signup() {
-    const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,28 +16,28 @@ function Signup() {
     const formData = { name, email, password };
 
     try {
-      const response = await fetch('https://homestead.onrender.com/register', {
+      const response = await fetch('https://homestead.onrender.com/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
-      console.log(response)
 
-      if (response.message=="User registered successfully") {
-        const data = await response.json();
+      const responseData = await response.json();
+      if (responseData.message === "User registered successfully") {
         MySwal.fire(
           'User Registered Successfully',
           'Please click the button!',
           'success'
-        )
+        ).then(() => {
+          navigate('/login'); // Redirect to login after successful registration
+        });
       } else {
-        const errorData = await response.json();
         MySwal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: errorData.message || 'Failed to Register User',
+          text: responseData.message || 'Failed to Register User',
         });
       }
     } catch (error) {
@@ -84,7 +82,6 @@ function Signup() {
       </div>
     </div>
   );
-  
 }
 
 export default Signup;

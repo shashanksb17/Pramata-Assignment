@@ -2,6 +2,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
+import Swal from 'sweetalert2';
+
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 
 
@@ -12,7 +17,7 @@ function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('https://album-app.onrender.com/login', {
+      const response = await fetch('https://album-app.onrender.com/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +28,12 @@ function LoginPage() {
       if (response.ok) {
         const data = await response.json();
         console.log(data)
-        // Successful login, handle token or redirect
+        localStorage.setItem("albumUserToken",data.token)
+        MySwal.fire(
+            'User Loggedin Successfully',
+            'Please click the button!',
+            'success'
+          )
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'Login failed');
