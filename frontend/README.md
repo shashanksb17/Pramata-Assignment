@@ -1,70 +1,119 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## React App Documentation
 
-In the project directory, you can run:
+### Introduction
 
-### `npm start`
+Welcome to the documentation for our React application. This guide will provide you with instructions on how to set up and run the application, an overview of its features, and how to interact with different parts of the app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Table of Contents
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Getting Started**
+   - Installation
+   - Running the App
 
-### `npm test`
+2. **Features**
+   - Home Page
+   - Album Creation
+   - Album Page
+   - Image Upload
+   - Slide Show
+   - Commenting
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **How to Use**
+   - Navigating the App
+   - Creating an Album
+   - Uploading Images
+   - Viewing Slide Show
+   - Adding Comments
 
-### `npm run build`
+### Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run the React app locally, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository from [GitHub Repo URL].
+2. Open a terminal and navigate to the project directory.
+3. Run `npm install` to install the required dependencies.
 
-### `npm run eject`
+#### Running the App
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Once the dependencies are installed, you can start the app:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The app will be available at `http://localhost:3000` in your web browser.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Features
 
-## Learn More
+#### Home Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The home page displays a list of albums in a tile format. Clicking on an album will take you to its respective page.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Album Creation
 
-### Code Splitting
+- To create a new album, navigate to the "Create Album" page.
+- Provide a title for the album and add images.
+- Click "Create" to add the album with images.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Album Page
 
-### Analyzing the Bundle Size
+- The album page displays images associated with a specific album.
+- Clicking on an image opens a slide show view.
+- You can also add comments to images on this page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Image Upload
 
-### Making a Progressive Web App
+- To add images to an existing album, navigate to the album's page.
+- Click "Add Image" and provide a title and image URL.
+- Click "Add Image" to add the image to the album.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Slide Show
 
-### Advanced Configuration
+- In the album page, clicking on an image will open a slide show view.
+- Navigate through images using arrow buttons.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### Commenting
 
-### Deployment
+- You can add comments to images in an album.
+- On the album page, click on an image to open it in slide show view.
+- Below the image, you'll find a comment section to add your comments.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### How to Use
 
-### `npm run build` fails to minify
+#### Navigating the App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Use the navigation bar to move between different pages: Home, Create Album, Album Page.
+- Click on album tiles on the home page to view album content.
+
+#### Creating an Album
+
+1. Navigate to the "Create Album" page.
+2. Enter a title for the album.
+3. Click "Add Image" to upload images for the album.
+4. Click "Create" to create the album.
+
+#### Uploading Images
+
+1. Go to the album page where you want to add images.
+2. Click "Add Image" and enter image title and URL.
+3. Click "Add Image" to add the image to the album.
+
+#### Viewing Slide Show
+
+1. Open an album.
+2. Click on an image to view it in slide show mode.
+3. Use the arrow buttons to navigate through images.
+
+#### Adding Comments
+
+1. Open an album and click on an image.
+2. Scroll down to find the comment section.
+3. Enter your comment and click "Submit."
+
+---
+
+With this documentation template, users will have clear instructions on how to set up, run, and use your React application. You can customize and expand upon this template based on your app's specific features and requirements.
