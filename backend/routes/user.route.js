@@ -5,7 +5,6 @@ const router = express.Router();
 
 //local modules
 const User = require("../models/user.model");
-
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -20,9 +19,8 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (isMatch) {
-      // Passwords match, proceed with authentication
-      // Generate and send JWT token, etc.
-      res.status(200).json({ success: true, message: "Login successful" });
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      res.status(200).json({ success: true, token: token, message: "Login successful" });
     } else {
       res.status(401).json({ success: false, message: "Invalid credentials" });
     }
@@ -43,11 +41,13 @@ router.post("/register", async (req, res) => {
       password: hashedPassword, // Store the hashed password
     });
 
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res
       .status(201)
       .json({
         message: "User registered successfully",
         success: true,
+        token: token,
         name: newUser.name,
       });
   } catch (error) {

@@ -5,6 +5,7 @@ const router = express.Router();
 const Album = require('../models/album.model');
 const Photo = require('../models/photo.model');
 const Comment = require('../models/comment.model');
+const verifyToken =require("../routes/token.verify")
 
 // Create a new album
 router.post('/albums', async (req, res) => {
