@@ -1,56 +1,66 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Signup.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import './Signup.css';
+
 
 const MySwal = withReactContent(Swal);
 
 function Signup() {
-  const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // React Router hook for navigation
+  const [name, setName] = useState(''); // State for name input
+  const [email, setEmail] = useState(''); // State for email input
+  const [password, setPassword] = useState(''); // State for password input
 
+  // Function to handle signup
   const handleSignup = async () => {
     const formData = { name, email, password };
 
     try {
-      const response = await fetch('https://homestead.onrender.com/user/register', {
+      const response = await fetch('https://album-app.onrender.com/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData), 
       });
+      console.log(response)
 
-      const responseData = await response.json();
-      if (responseData.message === "User registered successfully") {
-        MySwal.fire(
-          'User Registered Successfully',
-          'Please click the button!',
-          'success'
-        ).then(() => {
-          navigate('/login'); // Redirect to login after successful registration
-        });
-      } else {
-        MySwal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: responseData.message || 'Failed to Register User',
-        });
+      if (!response.ok) {
+        // Handle non-2xx responses
+        const responseData = await response.json();
+        throw new Error(responseData.message || 'Failed to register user');
       }
+
+      // Display a success message using SweetAlert2
+      MySwal.fire(
+        'User Registered Successfully',
+        'Please click the button!',
+        'success'
+      )
     } catch (error) {
       console.error('Signup error:', error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href="">Why do I have this issue?</a>',
-      });
+
+      // Handle different types of errors and show appropriate alerts
+      if (error instanceof TypeError) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Network Error',
+          text: 'Please check your internet connection.',
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.message || 'Something went wrong!',
+          footer: 'Why do I have this issue',
+        });
+      }
     }
   };
 
+  // JSX component rendering
   return (
     <div className="signup-container">
       <div className="signup-box">
@@ -60,22 +70,22 @@ function Signup() {
             type="text"
             placeholder="Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)} // Update name state on input change
           />
           <input
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)} // Update email state on input change
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)} // Update password state on input change
           />
         </div>
-        <button onClick={handleSignup}>Sign Up</button>
+        <button onClick={handleSignup}>Sign Up</button> {/* Call handleSignup when button is clicked */}
         <p>
           Already have an account? <Link to="/login">Log in</Link>
         </p>

@@ -9,13 +9,19 @@ const verifyToken =require("../routes/token.verify")
 
 // Create a new album
 router.post('/albums', async (req, res) => {
-  try {
-    const album = await Album.create(req.body);
-    res.status(201).json(album);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+    const { title, coverImage } = req.body;
+    
+    try {
+      const album = await Album.create({
+        title: title,
+        coverImage: coverImage,
+      });
+      
+      res.status(201).json(album);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });
 
 // Get all albums
 router.get('/albums', async (req, res) => {
